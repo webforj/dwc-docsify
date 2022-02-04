@@ -1,5 +1,3 @@
-/* global Prism */
-
 (() => {
   let flavor = getFlavor();
   let count = 1;
@@ -80,63 +78,63 @@
           `;
 
       [...doc.querySelectorAll('code[class^="lang-"]')].forEach(code => {
-        if (code.classList.contains('preview')) {
+        const isPreview = code.classList.contains('preview')
+        if (isPreview) {
           const isExpanded = code.classList.contains('expanded');
           const pre = code.closest('pre');
           const sourceGroupId = `code-block-source-group-${count}`;
           const toggleId = `code-block-toggle-${count}`;
           const BBjPre = getAdjacentExample('BBj', pre);
-          console.log(BBjPre);
           const hasBBj = BBjPre !== null;
 
           pre.setAttribute('data-lang', pre.getAttribute('data-lang').replace(/ preview$/, ''));
           pre.setAttribute('aria-labelledby', toggleId);
 
-          const codeBlock = `
-                <div class="code-block ${isExpanded ? 'code-block--expanded' : ''}">
-                  <div class="code-block__preview">
-                    ${code.textContent}
-                  </div>
-    
-                  <div class="code-block__source-group" id="${sourceGroupId}">
-                    <div class="code-block__source code-block__source--html" ${hasBBj ? 'data-flavor="html"' : ''}>
-                      ${pre.outerHTML}
-                    </div>
-    
-                    ${hasBBj
-              ? `
-                      <div class="code-block__source code-block__source--BBj" data-flavor="BBj">
-                        ${BBjPre.outerHTML}
-                      </div>
-                    `
-              : ''
-            }
-                  </div>
-    
-                  <div class="code-block__buttons">
-                    ${hasBBj ? ` ${htmlButton} ${BBjButton} ` : ''}
-    
-                    <button
-                      type="button"
-                      class="code-block__button code-block__toggle"
-                      aria-expanded="${isExpanded ? 'true' : 'false'}"
-                      aria-controls="${sourceGroupId}"
-                    >
-                      Source
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              `;
+          const codeBlock = /*html*/`
+<div class="code-block ${isExpanded ? 'code-block--expanded' : ''}">
+  <div class="code-block__preview">
+    ${code.textContent}
+  </div>
+
+  <div class="code-block__source-group" id="${sourceGroupId}">
+    ${hasBBj ? /*html*/`
+    <div class="code-block__source code-block__source--BBj" data-flavor="BBj">
+      <pre data-lang="BBj">
+          <code class="lang-bbj preview">${Prism.highlight(BBjPre.outerText, Prism.languages.BBj, 'BBj')}</code>
+      </pre>
+    </div>`
+              : ''}
+
+    <div class="code-block__source code-block__source--html" data-flavor="html">
+      <pre data-lang="html">
+        <code class="lang-html preview">${Prism.highlight(pre.outerText, Prism.languages.html, 'html')}</code>
+      </pre>
+    </div>
+  </div>
+
+  <div class="code-block__buttons">
+    ${hasBBj ? ` ${BBjButton} ${htmlButton} ` : ''}
+
+    <button
+      type="button"
+      class="code-block__button code-block__toggle"
+      aria-expanded="${isExpanded ? 'true' : 'false'}"
+      aria-controls="${sourceGroupId}"
+    >
+      Source
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+  </div>
+</div>`;
 
           pre.replaceWith(domParser.parseFromString(codeBlock, 'text/html').body);
           BBjPre?.remove();
@@ -147,6 +145,7 @@
 
       next(doc.body.innerHTML);
     });
+
 
     // After the page is done loading, force scripts in previews to execute
     hook.doneEach(() => {
