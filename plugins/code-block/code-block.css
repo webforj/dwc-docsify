@@ -1,0 +1,132 @@
+.code-block {
+  position: relative;
+  border-radius: 3px;
+  background-color: var(--bbj-surface-3);
+  margin-bottom: 1.5rem;
+  --bbj-font-size: var(--bbj-font-size-m);
+}
+
+.code-block__preview {
+  position: relative;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  min-width: 20rem;
+  max-width: 100%;
+  padding: 1.5rem 3.25rem 1.5rem 1.5rem;
+  border: solid 1px var(--bbj-color-default-light);
+}
+
+.code-block__preview--dragging:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+@media screen and (max-width: 600px) {
+  .code-block__preview {
+    padding-right: 1.5rem;
+  }
+}
+
+.code-block__source {
+  border: solid 1px var(--bbj-color-default-light);
+  border-bottom: none;
+  border-radius: 0 !important;
+  display: none;
+}
+
+.code-block--expanded .code-block__source {
+  display: block;
+}
+
+.code-block__source pre {
+  margin: 0;
+}
+
+.code-block__buttons {
+  position: relative;
+  border: solid 1px var(--bbj-color-default-light);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  display: flex;
+}
+
+.code-block__button {
+  flex: 0 0 auto;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  border: none;
+  border-radius: 0;
+  background: var(--bbj-surface-3);
+  /* text-transform: uppercase; */
+  color: var(--bbj-color-body-text);
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.code-block__button--html,
+.code-block__button--BBj {
+  width: 70px;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+}
+
+.code-block__button--selected {
+  color: var(--bbj-color-primary-text);
+}
+
+.code-block__button:first-of-type {
+  border-bottom-left-radius: 3px;
+}
+
+.code-block__button:last-of-type {
+  border-bottom-right-radius: 3px;
+}
+
+.code-block__button:hover,
+.code-block__button:active,
+.code-block__button:focus-visible {
+  box-shadow: 0 0 0 1px var(--bbj-color-default);
+  border-right-color: transparent;
+  /* background-color: var(--bbj-color-default-light); */
+  color: var(--bbj-color-primary-text-light);
+  z-index: 1;
+  outline: none;
+}
+
+.code-block__toggle {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.code-block__toggle svg {
+  width: 1em;
+  height: 1em;
+  margin-left: 0.25rem;
+}
+
+.code-block--expanded .code-block__toggle svg {
+  transform: rotate(180deg);
+}
+
+/* We can apply data-flavor="html|BBj" to any element on the page to toggle it when the user's flavor changes */
+body.flavor-html [data-flavor]:not([data-flavor="html"]) {
+  display: none;
+}
+
+body.flavor-BBj [data-flavor]:not([data-flavor="BBj"]) {
+  display: none;
+}
