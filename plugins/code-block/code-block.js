@@ -56,7 +56,7 @@
       const domParser = new DOMParser();
       const doc = domParser.parseFromString(html, 'text/html');
 
-      const htmlButton = `
+      const htmlButton = /*html*/`
             <button
               type="button"
               title="Show HTML code"
@@ -66,7 +66,7 @@
             </button>
           `;
 
-      const BBjButton = `
+      const BBjButton = /*html*/`
             <button
               type="button"
               title="Show BBj code"
@@ -98,18 +98,10 @@
 
   <div class="code-block__source-group" id="${sourceGroupId}">
     ${hasBBj ? /*html*/`
-    <div class="code-block__source code-block__source--BBj" data-flavor="BBj">
-      <pre data-lang="BBj">
-          <code class="lang-bbj preview">${Prism.highlight(BBjPre.outerText, Prism.languages.BBj, 'BBj')}</code>
-      </pre>
-    </div>`
+    <div class="code-block__source code-block__source--BBj" data-flavor="BBj"><pre data-lang="BBj"><code class="lang-bbj preview">${Prism.highlight(BBjPre.outerText, Prism.languages.BBj, 'BBj')}</code></pre></div>`
               : ''}
 
-    <div class="code-block__source code-block__source--html" data-flavor="html">
-      <pre data-lang="html">
-        <code class="lang-html preview">${Prism.highlight(pre.outerText, Prism.languages.html, 'html')}</code>
-      </pre>
-    </div>
+    <div class="code-block__source code-block__source--html" data-flavor="html"><pre data-lang="html"><code class="lang-html preview">${Prism.highlight(pre.outerText, Prism.languages.html, 'html')}</code></pre></div>
   </div>
 
   <div class="code-block__buttons">

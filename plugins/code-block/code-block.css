@@ -47,7 +47,7 @@
 
 .code-block__source pre {
   margin: 0;
-  white-space: initial;
+  white-space: pre-line;
 }
 
 .code-block__buttons {
