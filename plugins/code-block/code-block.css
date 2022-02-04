@@ -47,6 +47,7 @@
 
 .code-block__source pre {
   margin: 0;
+  white-space: initial;
 }
 
 .code-block__buttons {
