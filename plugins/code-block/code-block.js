@@ -145,7 +145,8 @@
         }
       });
 
-      setTimeout(() => Prism.highlightAllUnder(body, true));
+      Prism.highlightAllUnder(document.body, true);
+      requestAnimationFrame(() => Prism.highlightAllUnder(document.body, true));
 
       next(doc.body.innerHTML);
     });
