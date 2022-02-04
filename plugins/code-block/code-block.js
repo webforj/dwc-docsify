@@ -85,7 +85,7 @@
           const pre = code.closest('pre');
           const sourceGroupId = `code-block-source-group-${count}`;
           const toggleId = `code-block-toggle-${count}`;
-          const BBjPre = getAdjacentExample('BBj', pre);
+          const BBjPre = getAdjacentExample('bbj', pre);
           const hasBBj = BBjPre !== null;
 
           pre.setAttribute('data-lang', pre.getAttribute('data-lang').replace(/ preview$/, ''));
