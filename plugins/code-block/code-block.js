@@ -37,7 +37,7 @@
   }
 
   function getFlavor() {
-    return localStorage.getItem('flavor') || 'html';
+    return localStorage.getItem('flavor') || 'BBj';
   }
 
   function setFlavor(newFlavor) {
