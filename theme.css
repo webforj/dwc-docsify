@@ -279,11 +279,6 @@ video {
   background-color: var(--bbj-color-gray-95);
 }
 
-html[data-app-theme="dark"] .markdown-section tr code,
-html[data-app-theme="dark-pure"] .markdown-section tr code {
-  background-color: var(--bbj-color-gray-5);
-}
-
 /* Code blocks */
 .markdown-section pre {
   position: relative;
