@@ -32,9 +32,12 @@
         // Toggle the dark mode class without transitions
         document.body.appendChild(noTransitions);
         requestAnimationFrame(() => {
-          document.documentElement.setAttribute('data-app-theme', theme === 'auto' ? (isDark() ? 'dark' : 'light') : theme);
+          const attr = theme === 'auto' ? (isDark() ? 'dark' : 'light') : theme;
+          document.documentElement.setAttribute('data-app-theme', attr);
+          window.dispatchEvent(new CustomEvent('docsify-theme-picker-updated', { detail: attr }));
           requestAnimationFrame(() => document.body.removeChild(noTransitions));
         });
+
       }
 
       let theme = getTheme();
