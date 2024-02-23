@@ -26,7 +26,7 @@
         localStorage.setItem('theme', theme);
 
         // Update the UI
-        // [...menu.querySelectorAll('bbj-menuitem')].map(item => (item.checked = item.getAttribute('value') === theme));
+        // [...menu.querySelectorAll('dwc-menuitem')].map(item => (item.checked = item.getAttribute('value') === theme));
         icon.name = theme === 'auto' ? isDark() ? icons['dark'] : icons['light'] : icons[theme];
 
         // Toggle the dark mode class without transitions
@@ -48,18 +48,18 @@
         'dark-pure': 'moon-stars'
       }
       // Generate the theme picker dropdown
-      const icon = document.createElement('bbj-icon');
+      const icon = document.createElement('dwc-icon');
       icon.name = 'sun';
-      const popup = document.createElement('bbj-popupmenu');
+      const popup = document.createElement('dwc-popupmenu');
       icon.classList.add('theme-picker');
       popup.innerHTML = `
-        <bbj-menu>
-          <bbj-menuitem label="Light" value="light" checked></bbj-menuitem>
-          <bbj-menuitem label="Dark" value="dark"></bbj-menuitem>
-          <bbj-menuitem label="Dark Pure" value="dark-pure"></bbj-menuitem>
-          <bbj-separator></bbj-separator>
-          <bbj-menuitem label="System Preference" value="auto"></bbj-menuitem>
-        </bbj-menu>
+        <dwc-menu>
+          <dwc-menuitem label="Light" value="light" checked></dwc-menuitem>
+          <dwc-menuitem label="Dark" value="dark"></dwc-menuitem>
+          <dwc-menuitem label="Dark Pure" value="dark-pure"></dwc-menuitem>
+          <dwc-separator></dwc-separator>
+          <dwc-menuitem label="System Preference" value="auto"></dwc-menuitem>
+        </dwc-menu>
       `;
       icon.addEventListener('click', (ev) => {
         popup.contextElement = ev.target;
@@ -71,7 +71,7 @@
       document.querySelector('.sidebar-toggle').insertAdjacentElement('afterend', icon);
 
       // Listen for selections
-      popup.addEventListener('bbj-clicked', event => setTheme(event.detail.item.getAttribute('value')));
+      popup.addEventListener('dwc-clicked', event => setTheme(event.detail.item.getAttribute('value')));
 
       // Update the theme when the preference changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => setTheme(theme));
